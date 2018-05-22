@@ -100,5 +100,8 @@ venv.bak/
 # mkdocs documentation
 /site
 
+#private
+dont_send_to_git.py
+
 # mypy
 .mypy_cache/
