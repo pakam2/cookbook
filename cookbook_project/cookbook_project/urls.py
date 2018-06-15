@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from cookbook.views import MainView
+from cookbook.views import MainView, SignUpView, LoginView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', MainView.as_view(), name="main"),
+    url(r'^main/', MainView.as_view(), name="main"),
+    url(r'^$', LoginView.as_view(), name="login"),
+    url(r'^registrate/', SignUpView.as_view(), name="signup"),
+
+    
     
 ]
