@@ -3,7 +3,7 @@
 {% block title  %}Główna strona {% endblock %}
 {%block body %}
 <h1>Main</h1>
-
+{{user}}
 <form action='/' method="POST">
 		{{form.as_p}}
 		<input type="submit" name="Dadaj"/>

@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^main/', MainView.as_view(), name="main"),
     url(r'^$', LoginView.as_view(), name="login"),
-    url(r'^registrate/', SignUpView.as_view(), name="signup"),
+    url(r'^signup/', SignUpView.as_view(), name="signup"),
 
     
     

@@ -6,6 +6,11 @@
 
 <form action='/' method="POST">
 		{{form.as_p}}
+		{% csrf_token %}
 		<input type="submit" name="Dadaj"/>
 </form>
+
+<br>
+
+<a href="signup/">Sign up</a> 
 {% endblock %}
