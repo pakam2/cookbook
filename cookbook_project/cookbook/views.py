@@ -10,11 +10,10 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-class MainView(View, LoginRequiredMixin):
+class MainView(LoginRequiredMixin, View):
 
     def get(self, request):
-        form = RecipeForm()
-        return render(request, 'main.html', {'form': form})
+        return render(request, 'main.html')
 
     def post(self, request):
         return render(request, 'main.html')
@@ -57,3 +56,9 @@ class LoginView(View):
             return redirect('/main')
         else:
             return HttpResponse("There is no such user")
+
+class LogOutView(View):
+
+    def get(self, request):
+        logout(request)
+        return redirect('/')

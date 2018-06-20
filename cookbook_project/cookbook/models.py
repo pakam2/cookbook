@@ -8,18 +8,20 @@ SEASONS = (  ("SP", "Spring"),
             ("AU", "Autumn"),
             ("WI","Winter"),
             )
+
+
 class RecipesModel(models.Model):
 
     recipe_title = models.CharField(max_length=200)
     recipe_created = models.DateField(auto_now_add = True)
-    recipe_season = models.CharField(max_length=2, choices=SEASONS) 
-    
+    recipe_season = models.CharField(max_length=2, choices=SEASONS)
+
     def __str__(self):
         return "Recipe title: {}, recipe created on: {}, recipe for '{}' season".format(self.recipe_title, self.recipe_created, self.recipe_season)
 
 
 class IngredientsModel(models.Model):
-    
+
     ingredient_one = models.CharField(max_length=200)
     ingredient_two = models.CharField(max_length=200)
     ingredient_three = models.CharField(max_length=200)
@@ -40,5 +42,3 @@ class IngredientsModel(models.Model):
             if not ingredient == "":
                 print("- name of ingredient: {}".format(ingredient))
         return ""
-
-
