@@ -9,7 +9,6 @@ SEASONS = (  ("SP", "Spring"),
             ("WI","Winter"),
             )
 
-
 class RecipesModel(models.Model):
 
     recipe_title = models.CharField(max_length=200)
@@ -22,16 +21,16 @@ class RecipesModel(models.Model):
 
 class IngredientsModel(models.Model):
 
-    ingredient_one = models.CharField(max_length=200)
-    ingredient_two = models.CharField(max_length=200)
-    ingredient_three = models.CharField(max_length=200)
-    ingredient_four = models.CharField(max_length=200)
-    ingredient_five = models.CharField(max_length=200)
-    ingredient_six = models.CharField(max_length=200)
-    ingredient_seven = models.CharField(max_length=200)
-    ingredinet_eight = models.CharField(max_length=200)
-    ingredient_nine = models.CharField(max_length=200)
-    ingredient_ten = models.CharField(max_length=200)
+    ingredient_one = models.CharField(max_length=200, blank=True)
+    ingredient_two = models.CharField(max_length=200, blank=True)
+    ingredient_three = models.CharField(max_length=200, blank=True)
+    ingredient_four = models.CharField(max_length=200, blank=True)
+    ingredient_five = models.CharField(max_length=200, blank=True)
+    ingredient_six = models.CharField(max_length=200, blank=True)
+    ingredient_seven = models.CharField(max_length=200, blank=True)
+    ingredient_eight = models.CharField(max_length=200, blank=True)
+    ingredient_nine = models.CharField(max_length=200, blank=True)
+    ingredient_ten = models.CharField(max_length=200, blank=True)
     recipe = models.ManyToManyField(RecipesModel)
 
 
