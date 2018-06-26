@@ -14,13 +14,7 @@ class RecipesModel(models.Model):
     recipe_title = models.CharField(max_length=200)
     recipe_created = models.DateField(auto_now_add = True)
     recipe_season = models.CharField(max_length=2, choices=SEASONS)
-
-    def __str__(self):
-        return "Recipe title: {}, recipe created on: {}".format(self.recipe_title, self.recipe_created)
-
-
-class IngredientsModel(models.Model):
-
+    recipe_creator = models.IntegerField(blank=False)
     ingredient_one = models.CharField(max_length=200, blank=True)
     ingredient_two = models.CharField(max_length=200, blank=True)
     ingredient_three = models.CharField(max_length=200, blank=True)
@@ -31,13 +25,16 @@ class IngredientsModel(models.Model):
     ingredient_eight = models.CharField(max_length=200, blank=True)
     ingredient_nine = models.CharField(max_length=200, blank=True)
     ingredient_ten = models.CharField(max_length=200, blank=True)
-    recipe = models.ManyToManyField(RecipesModel)
 
 
     def __str__(self):
-        list_of_ingredients = [self.ingredient_one, self.ingredient_two, self.ingredient_three, self.ingredient_four, self.ingredient_five]
-        print("List of all ingredients:")
+        recipe_info =  "Recipe title: {}, recipe created on: {}".format(self.recipe_title, self.recipe_created)
+        list_of_ingredients = [self.ingredient_one, self.ingredient_two, self.ingredient_three, self.ingredient_four, self.ingredient_five,
+                               self.ingredient_six, self.ingredient_seven, self.ingredient_eight, self.ingredient_nine, self.ingredient_ten]
+        list_to_return = ""
+
         for ingredient in list_of_ingredients:
             if not ingredient == "":
-                print("- name of ingredient: {}".format(ingredient))
-        return ""
+                list_to_return += "- name of ingredient: {}\n".format(ingredient)
+        return recipe_info + ". List of ingredients:" + list_to_return
+

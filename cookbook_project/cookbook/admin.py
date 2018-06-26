@@ -1,5 +1,6 @@
 from django.contrib import admin
-from cookbook.models import RecipesModel, IngredientsModel
+from cookbook.models import RecipesModel
+from django.contrib.auth.models import User
 # Register your models here.
 
 class RecipeAdmin(admin.ModelAdmin):
@@ -65,10 +66,16 @@ class RecipeAdmin(admin.ModelAdmin):
         #Changing the text for displaying the creation date of a recipe
         return "Recipe created on {}".format(self.recipe_created)
     
-    actions = [spring_season, summer_season, autumn_season, winter_season]    
-    list_display = ('recipe_title', created_date, 'recipe_season')
+    def get_user_name(self):
+        #Get username based on the RecipeModel 'recipe_creator' field
+        pk = self.recipe_creator
+        user = User.objects.get(pk=pk)
+        return user.username
 
-@admin.register(IngredientsModel)
+    actions = [spring_season, summer_season, autumn_season, winter_season]    
+    list_display = ('recipe_title', get_user_name, created_date, 'recipe_season')
+    exclude = ['recipe_creator']
+
 class IngredientsAdmin(admin.ModelAdmin):
    
     

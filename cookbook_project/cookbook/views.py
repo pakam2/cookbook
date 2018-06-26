@@ -62,3 +62,14 @@ class LogOutView(View):
     def get(self, request):
         logout(request)
         return redirect('/')
+
+
+class AddRecipeView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        form_recipe = RecipeForm()
+        return render(request, 'add_recipe.html', {'form': form_recipe})
+
+    
+    def post(self, request):
+        return render(request, 'add_recipe.html')

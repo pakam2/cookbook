@@ -6,11 +6,9 @@ from django.contrib.auth.models import User
 
 
 
-class RecipeForm(ModelForm):
+class RecipeForm(forms.Form):
     
-    class Meta:
-        model = RecipesModel
-        fields = '__all__'
+    recipe_name = forms.CharField(max_length=255, label="Recipe title", required=True)
 
 class SignUpForm(UserCreationForm):
     
