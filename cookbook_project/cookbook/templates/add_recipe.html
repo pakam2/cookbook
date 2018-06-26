@@ -2,10 +2,84 @@
 
 {% block title  %}Add a new recipe{% endblock %}
 {%block body %}
+<!--class for showing/hiding 'tr', and 'span'-->
+<style>
+
+tr.hide td{
+		display:none;
+}
+td {
+	width:150px;
+}
+.show{
+	display:default;
+}
+.hideSpan{
+	visibility:hidden;
+
+}
+.showSpan{
+	visibility:visible;
+}
+</style>
+<script>
+var showRow = 4;
+var spanNumber = 1;
+function addNewIngredient(){
+	//The function show (displays) new fields
+	var getTable = document.getElementsByTagName('tr');
+	var numberOfRows = getTable.length
+	var numberOfHidden = 0;
+	if (showRow != numberOfRows + 1){
+		for (var j =0;j < numberOfRows;j++){
+			if (getTable[j].className == 'hide') {
+				numberOfHidden++;
+			}
+		}
+		for (var i = 2; i < showRow; i++){
+			getTable[i].classList.remove('hide');
+			getTable[i].classList.add('show');
+		}
+
+		showRow++;
+	}
+	//This part of the function shows/hides the "New ingredient" button
+	var getSpan = document.getElementsByClassName('badge');
+	console.log(spanNumber);
+	if (spanNumber != 9){
+		getSpan[spanNumber -1].classList.add('hideSpan');	
+		getSpan[spanNumber -1].classList.remove('showSpan');	
+		getSpan[spanNumber].classList.add('showSpan');
+		getSpan[spanNumber].classList.remove('hideSpan');
+	}else if (spanNumber == 9){
+		getSpan[8].classList.add('hideSpan');
+		getSpan[8].classList.remove('showSpan');
+	}
+	spanNumber++;
+}
+</script>
 <h1>Add recipe</h1>
 
 <form action='' method="POST">
-	{{form.as_p}}
+		{% csrf_token %}
+<table>
+		<tr><td>Recipe title: </td><td>{{form.recipe_title}}</td><td></td></tr>
+		<tr><td>Recipe for season: </td><td>{{form.recipe_season}}</td><td></td></tr>
+		<tr><td>First ingredient: </td><td>{{form.ingredient_one}}</td><td><span class="badge badge-info" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Second ingredient: </td><td>{{form.ingredient_two}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Third ingredient: </td><td>{{form.ingredient_three}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Fourth ingredient: </td><td>{{form.ingredient_four}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Fifth ingredient: </td><td>{{form.ingredient_five}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Sixth ingredient: </td><td>{{form.ingredient_six}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Seventh ingredient: </td><td>{{form.ingredient_seven}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Eight ingredient: </td><td>{{form.ingredient_eight}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Ninth ingredient: </td><td>{{form.ingredient_nine}}</td><td><span class="badge badge-info hideSpan" style="cursor:pointer" onclick=addNewIngredient()>Next ingredient</span></td></tr>
+		<tr class="hide"><td>Tenth ingredient: </td><td>{{form.ingredient_ten}}</td><td></td></tr> 
+
+
+</table>
+
+<input type='submit' value='add'>
 </form>
 
 {% endblock %}

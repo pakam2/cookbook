@@ -72,4 +72,6 @@ class AddRecipeView(LoginRequiredMixin, View):
 
     
     def post(self, request):
+        form = RecipeForm(data=request.POST)
+        print(form)
         return render(request, 'add_recipe.html')
