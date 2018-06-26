@@ -16,7 +16,7 @@ class RecipesModel(models.Model):
     recipe_season = models.CharField(max_length=2, choices=SEASONS)
 
     def __str__(self):
-        return "Recipe title: {}, recipe created on: {}, recipe for '{}' season".format(self.recipe_title, self.recipe_created, self.recipe_season)
+        return "Recipe title: {}, recipe created on: {}".format(self.recipe_title, self.recipe_created)
 
 
 class IngredientsModel(models.Model):
