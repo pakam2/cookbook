@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-
+from cookbook.models import RecipesModel
 
 
 # Create your views here.
@@ -72,6 +72,30 @@ class AddRecipeView(LoginRequiredMixin, View):
 
     
     def post(self, request):
-        form = RecipeForm(data=request.POST)
-        print(form)
-        return render(request, 'add_recipe.html')
+        new_form = RecipeForm()
+
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            pass
+        recipe_title = form['recipe_title'].value()
+        recipe_season = form['recipe_season'].value()
+        ingredient_one = form['ingredient_one'].value()
+        ingredient_two = form['ingredient_two'].value()
+        ingredient_three = form['ingredient_three'].value()
+        ingredient_four = form['ingredient_four'].value()
+        ingredient_five = form['ingredient_five'].value()
+        ingredient_six = form['ingredient_six'].value()
+        ingredient_seven = form['ingredient_seven'].value()
+        ingredient_eight = form['ingredient_eight'].value()
+        ingredient_nine = form['ingredient_nine'].value()
+        ingredient_ten = form['ingredient_ten'].value()            
+
+        logged_user = User.objects.get(username=request.user)
+        print(logged_user.id)
+        new_recipe = RecipesModel.objects.create(recipe_title=recipe_title, recipe_season=recipe_season, recipe_creator=logged_user.id, ingredient_one=ingredient_one,
+                                   ingredient_two=ingredient_two, ingredient_three=ingredient_three, ingredient_four=ingredient_four, ingredient_five=ingredient_five,
+                                   ingredient_six=ingredient_six, ingredient_seven=ingredient_seven, ingredient_eight=ingredient_eight, ingredient_nine=ingredient_nine,
+                                   ingredient_ten=ingredient_ten)
+        new_recipe.save()
+
+        return render(request, 'add_recipe.html', {'form': new_form, 'ctx': 'Added a new recipe'})
