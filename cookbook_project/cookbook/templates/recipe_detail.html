@@ -5,5 +5,35 @@
 {% for x in recipe %}
 <h1>{{x.recipe_title}}</h1>
 <p>{{x.recipe_season}}</p>
+{% if x.ingredient_one%}
+<p>	{{x.ingredient_one}}</p>
+{% endif %}
+{% if x.ingredient_two%}
+	<p>{{x.ingredient_two}}</p>
+{% endif %}
+{% if x.ingredient_three%}
+	<p>{{x.ingredient_three}}</p>
+{% endif %}
+{% if x.ingredient_four%}
+	<p>{{x.ingredient_four}}</p>
+{% endif %}
+{% if x.ingredient_five%}
+	<p>{{x.ingredient_five}}</p>
+{% endif %}
+{% if x.ingredient_six%}
+	<p>{{x.ingredient_six}}</p>
+{% endif %}
+{% if x.ingredient_seven%}
+	<p>{{x.ingredient_seven}}</p>
+{% endif %}
+{% if x.ingredient_eight%}
+	<p>{{x.ingredient_eight}}</p>
+{% endif %}
+{% if x.ingredient_nine%}
+	<p>{{x.ingredient_nine}}</p>
+{% endif %}
+{% if x.ingredient_ten%}
+	<p>{{x.ingredient_ten}}</p>
+{% endif %}
 {% endfor%}
 {% endblock %}
