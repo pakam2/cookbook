@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title  %}Recipes{% endblock %}
+{%block body %}
+{% for x in recipe %}
+<h1>{{x.recipe_title}}</h1>
+<p>{{x.recipe_season}}</p>
+{% endfor%}
+{% endblock %}

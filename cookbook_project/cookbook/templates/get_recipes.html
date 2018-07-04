@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title  %}Show my recipes{% endblock %}
+{%block body %}
+<h1>Show recipes</h1>
+<form action="" method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+<input type="submit" value="search recipe">
+</form>
+{% endblock %}

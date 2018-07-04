@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title  %}Show my recipes{% endblock %}
+{%block body %}
+<h1>Show recipes</h1>
+		{% csrf_token %}
+		{% for recipe in recipes %}
+		<p><a href='/recipe/{{recipe.id}}/')>{{recipe.recipe_title}}</a></p>
+		{% endfor %}
+{% endblock %}
