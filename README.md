@@ -1,7 +1,7 @@
 # Cookbook
   An online recipe app
   
-    App in development (in collaboration with "LucynaM").
+    App in development.
     
       Main functionalities that the app will have:
         - list of all recipes (with filters)
