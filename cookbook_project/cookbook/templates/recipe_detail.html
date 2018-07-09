@@ -2,38 +2,86 @@
 
 {% block title  %}Recipes{% endblock %}
 {%block body %}
+<style>
+table, tr, td, th{
+	border:1px solid black;
+
+
+}
+td, th {
+	text-align: center;
+}
+</style>
 {% for x in recipe %}
-<h1>{{x.recipe_title}}</h1>
-<p>{{x.recipe_season}}</p>
+<h2>Title of recipe: {{x.recipe_title}}
+
+
+	</h2>
+
+<!-- Displays a season -->
+<p>Recipe for a
+	{% if x.recipe_season == "SP" %}
+		"spring season"
+	{% endif %}
+</p>
+
+
+<table>
+<tr> <th>List of ingredients</th> </tr>
+
 {% if x.ingredient_one%}
-<p>	{{x.ingredient_one}}</p>
+<tr>
+	<td>{{x.ingredient_one}}</td>
+</tr>
 {% endif %}
+
 {% if x.ingredient_two%}
-	<p>{{x.ingredient_two}}</p>
+<tr>
+	<td>{{x.ingredient_two}}</td>
+</tr>
 {% endif %}
+
 {% if x.ingredient_three%}
-	<p>{{x.ingredient_three}}</p>
+<tr>
+	<td>{{x.ingredient_three}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_four%}
-	<p>{{x.ingredient_four}}</p>
+<tr>
+	<td>{{x.ingredient_four}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_five%}
-	<p>{{x.ingredient_five}}</p>
+<tr>
+	<td>{{x.ingredient_five}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_six%}
-	<p>{{x.ingredient_six}}</p>
+<tr>
+	<td>{{x.ingredient_six}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_seven%}
-	<p>{{x.ingredient_seven}}</p>
+<tr>
+	<td>{{x.ingredient_seven}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_eight%}
-	<p>{{x.ingredient_eight}}</p>
+<tr>
+	<td>{{x.ingredient_eight}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_nine%}
-	<p>{{x.ingredient_nine}}</p>
+<tr>
+	<td>{{x.ingredient_nine}}</td>
+</tr>
 {% endif %}
 {% if x.ingredient_ten%}
-	<p>{{x.ingredient_ten}}</p>
+<tr>
+	<td>{{x.ingredient_ten}}</td>
+</tr>
 {% endif %}
+
+</table>
 {% endfor%}
 {% endblock %}

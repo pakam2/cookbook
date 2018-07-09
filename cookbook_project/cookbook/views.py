@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from cookbook.forms import RecipeForm, SignUpForm, LoginForm
+from cookbook.forms import RecipeForm, SignUpForm, LoginForm, ShowRecipesForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
@@ -98,4 +98,24 @@ class AddRecipeView(LoginRequiredMixin, View):
                                    ingredient_ten=ingredient_ten)
         new_recipe.save()
 
-        return render(request, 'add_recipe.html', {'form': new_form, 'ctx': 'Added a new recipe'})
+        return render(request, 'add_recipe.html', {'form': new_form, 'ctx': "Added a new recipe: '{}'".format(recipe_title)})
+
+
+
+class ShowRecipesView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        form = ShowRecipesForm()
+        return render(request, 'get_recipes.html', {'form': form})
+
+
+    def post(self, request):
+        form = request.POST
+        recipes = RecipesModel.objects.filter(recipe_creator=request.user.id, recipe_season=form['recipe_season'])
+        return render(request, 'show_recipes.html', {'recipes': recipes}) 
+
+class RecipeDetailView(LoginRequiredMixin, View):
+
+    def get(self, request, id):
+        recipe = RecipesModel.objects.filter(recipe_creator=request.user.id, id =id)
+        return render(request, 'recipe_detail.html', {'recipe': recipe})

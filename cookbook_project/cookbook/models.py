@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -9,13 +10,19 @@ SEASONS = (  ("SP", "Spring"),
             ("WI","Winter"),
             )
 
+def checkLogin(val):
+    if val == "aa":
+        raise ValidationError("Cannot have this value")
+
+
 class RecipesModel(models.Model):
 
     recipe_title = models.CharField(max_length=200)
     recipe_created = models.DateField(auto_now_add = True)
     recipe_season = models.CharField(max_length=2, choices=SEASONS)
     recipe_creator = models.IntegerField(blank=False)
-    ingredient_one = models.CharField(max_length=200, blank=True)
+    recipe = models.TextField(blank=False)
+    ingredient_one = models.CharField(max_length=200, blank=True, validators=[checkLogin])
     ingredient_two = models.CharField(max_length=200, blank=True)
     ingredient_three = models.CharField(max_length=200, blank=True)
     ingredient_four = models.CharField(max_length=200, blank=True)
@@ -37,4 +44,3 @@ class RecipesModel(models.Model):
             if not ingredient == "":
                 list_to_return += "- name of ingredient: {}\n".format(ingredient)
         return recipe_info + ". List of ingredients:" + list_to_return
-
